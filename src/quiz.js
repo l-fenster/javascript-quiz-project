@@ -35,8 +35,32 @@ class Quiz {
       return true;
     }
   }
+  filterQuestionsByDifficulty(difficultyNumber) {
+    if (
+      difficultyNumber !== 1 &&
+      difficultyNumber !== 2 &&
+      difficultyNumber !== 3
+    ) {
+      return this.questions;
+    }
+    const filteredArr = this.questions.filter(
+      (element) => element.difficulty === difficultyNumber
+    );
+    this.questions = filteredArr;
+    this.currentQuestionIndex = 0;
+  }
+  averageDifficulty() {
+    const totalDifficulty = this.questions.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.difficulty,
+      0
+    );
+    const avgDifficulty = totalDifficulty / this.questions.length;
+    console.log(avgDifficulty);
+    return avgDifficulty;
+  }
 }
 
+//const resultArr = [];
 //git branch fix-HomePage
 //git checkout fix-HomePage
 //Homepage(title)
