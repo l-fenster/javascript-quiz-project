@@ -215,4 +215,21 @@ document.addEventListener("DOMContentLoaded", () => {
     showQuestion(); */
     location.reload();
   }
+
+  timer = setInterval(function () {
+    quiz.timeRemaining--;
+    if (quiz.timeRemaining > 0) {
+      const minutes = Math.floor(quiz.timeRemaining / 60)
+        .toString()
+        .padStart(2, "0");
+      const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
+      timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+      return quiz.timeRemaining;
+    } else {
+      quizView.style.display = "none";
+      endView.style.display = "flex";
+      resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${quiz.questions.length} answers!`;
+      clearInterval(timer);
+    }
+  }, 1000);
 });
