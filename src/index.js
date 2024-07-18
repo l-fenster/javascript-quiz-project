@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Update the green progress bar
     // Update the green progress bar (div#progressBar) width so that it shows the percentage of questions answered
 
-    let result = quiz.currentQuestionIndex * 25;
+    let result = quiz.currentQuestionIndex * (100 / quiz.questions.length);
     progressBar.style.width = `${result}%`;
 
     /*let num = 0;
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the question count (div#questionCount) show the current question out of total questions
     let numb = quiz.currentQuestionIndex + 1;
 
-    questionCount.innerText = `Question ${numb} of 4`; //  This value is hardcoded as a placeholder
+    questionCount.innerText = `Question ${numb} of ${quiz.questions.length}`; //  This value is hardcoded as a placeholder
 
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
@@ -200,18 +200,19 @@ document.addEventListener("DOMContentLoaded", () => {
     endView.style.display = "flex";
 
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
-    resultContainer.innerText = `You scored ${quiz.correctAnswers} out of 4 answers!`; // This value is hardcoded as a placeholder
+    resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${quiz.questions.length} answers!`; // This value is hardcoded as a placeholder
   }
 
   const resetButton = document.querySelector("#restartButton");
   resetButton.addEventListener("click", resetButtonHandler);
 
   function resetButtonHandler() {
-    endView.style.display = "none";
+    /*endView.style.display = "none";
     quizView.style.display = "block";
     currentQuestionIndex = 0;
     correctAnswers = 0;
     quiz.shuffleQuestions();
-    showQuestion();
+    showQuestion(); */
+    location.reload();
   }
 });
